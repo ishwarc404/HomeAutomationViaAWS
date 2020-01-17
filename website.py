@@ -25,6 +25,6 @@ def index():
 #     r = requests.post(url = URL) 
 #     return render_template("index.html")
 
-if __name__ == "__main__":
-    app.debug  = True
-    app.run()
+# if __name__ == "__main__":
+#     app.debug  = True
+#     app.run()
