@@ -4,7 +4,7 @@
 #include <SocketIOclient.h>
 
 #include <ESP8266WiFi.h>
- 
+// 
 //const char* ssid = "ZeroPoint";
 //const char* password = "zeropoint@0620";
 const char* ssid = "The Marauder's";
