@@ -4,13 +4,18 @@
 #include <SocketIOclient.h>
 
 #include <ESP8266WiFi.h>
-// 
+#include "DHTesp.h"
+
+
 //const char* ssid = "ZeroPoint";
 //const char* password = "zeropoint@0620";
-const char* ssid = "The Marauder's";
-const char* password = "ishwar666";
-  
+//const char* ssid = "The Marauder's";
+//const char* password = "ishwar666";
+const char* ssid = "ish";
+const char* password = "reset123";
+float temperature = 0.0;
 int ledPin = D1; // GPIO13---D7 of NodeMCU
+DHTesp dht;
 WiFiServer server(80);
 
 //websocket setup
@@ -22,6 +27,10 @@ void setup() {
  
   pinMode(ledPin, OUTPUT);
   digitalWrite(ledPin, LOW);
+
+  //temperature sensor
+  Serial.println("Status\tHumidity (%)\tTemperature (C)\t(F)");
+   dht.setup(16, DHTesp::DHT11);
  
   // Connect to WiFi network
   Serial.println();
@@ -34,6 +43,8 @@ void setup() {
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
+
+  
   }
   Serial.println("");
   Serial.println("WiFi connected");
@@ -62,6 +73,20 @@ const char* host = "dweet";
 }
  
 void loop() {
+
+  //temperature 
+  delay(dht.getMinimumSamplingPeriod()); /* Delay of amount equal to sampling period */
+  float humidity = dht.getHumidity();/* Get humidity value */
+  temperature = dht.getTemperature();/* Get temperature value */
+  Serial.print(dht.getStatusString());/* Print status of communication */
+  Serial.print("\t");
+  Serial.print(humidity, 1);
+  Serial.print("\t\t");
+  Serial.print(temperature, 1);
+  Serial.print("\t\t");
+  Serial.println(dht.toFahrenheit(temperature), 1);/* Convert temperature to Fahrenheit units */
+
+
   // Check if a client has connected
   WiFiClient client = server.available();
   if (!client) {
@@ -80,7 +105,6 @@ void loop() {
   client.flush();
  
   // Match the request
- 
   int value = LOW;
   if (request.indexOf("/LED=ON") != -1)  {
     digitalWrite(ledPin, HIGH);
@@ -90,10 +114,18 @@ void loop() {
     digitalWrite(ledPin, LOW);
     value = LOW;
   }
- 
+
+   if (request.indexOf("/TEMP") != -1)  {
+  // Return the response
+   client.println("HTTP/1.1 200 OK");
+  client.println("Content-Type: text/html");
+  client.println(""); //  do not forget this one
+  client.println(temperature); 
+  }
+  else
+  { 
 // Set ledPin according to the request
 //digitalWrite(ledPin, value);
- 
   // Return the response
   client.println("HTTP/1.1 200 OK");
   client.println("Content-Type: text/html");
@@ -116,5 +148,6 @@ void loop() {
   delay(1);
   Serial.println("Client disonnected");
   Serial.println("");
- 
+  }
+
 }

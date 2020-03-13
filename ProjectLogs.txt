@@ -1,0 +1,21 @@
+MiniProject: 
+Home Automation System using the Cloud
+
+Team Members: 
+Drasti N Vadhar        PES1201700686
+G Shreya	       PES1201700084  
+Ishwar Choudhary       PES1201700189
+ 
+
+Project Logs:
+18/1/2020: Started working on the project abstract, researched about the current methods of IOT based home automation.
+19/1/2020: Designing a rough model to implement the IOT system. Looking into the technologies that can be used.
+21/1/2020: SP Road visit to get the required components such as the NodeMCU, bread-board, wires, LED Bulb.
+21/1/2020: Started working on pseudo code, and testing out the wifi capabilities of the the NodeMCU.
+22/1/2020: Coding the NodeMCU board to connect to the home wifi signal and controller the LED Bulb.
+23/1/2020: Setting up a local server on the NodeMCU and finalising the code for the LED Bulb.
+24/1/2020: Designing a local flask server and connecting to the same local network as the NodeMCU to control it. Also started designing a basic website.
+25/1/2020: Initialising an AWS instance and setting up nginx server on it. Developing and pushing the server flask code and rebuilding the website in React.
+26/1/2020: Working on the react app. And testing out the alpha version of the entire stack.
+27/1/2020: Minor bugs fixed in the NodeMCU code and the AWS server code. React app v1.0 completed.
+28/1/2020: ReactApplication deployed onto the same AWS instance and connected with flask. Testing and working on presentation.
