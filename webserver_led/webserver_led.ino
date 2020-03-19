@@ -7,12 +7,12 @@
 #include "DHTesp.h"
 
 
-//const char* ssid = "ZeroPoint";
-//const char* password = "zeropoint@0620";
+const char* ssid = "ZeroPoint";
+const char* password = "zeropoint@0620";
 //const char* ssid = "The Marauder's";
 //const char* password = "ishwar666";
-const char* ssid = "ish";
-const char* password = "reset123";
+//const char* ssid = "ish";
+//const char* password = "reset123";
 float temperature = 0.0;
 int ledPin = D1; // GPIO13---D7 of NodeMCU
 DHTesp dht;
