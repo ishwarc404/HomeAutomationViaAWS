@@ -1,0 +1,14 @@
+#include <Servo.h> // including servo library.
+
+Servo servo_1; // Giving name to servo.
+
+void setup (){
+  servo_1.attach(0); // Attaching Servo to D3
+}
+
+void loop(){
+  servo_1.write (0); // Servo will move to 45 degree angle.
+  delay(1000);
+  servo_1.write(90);
+  delay(1000);
+}
